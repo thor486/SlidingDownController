@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+SlidingDownController.h"
+#import "SlidingDownController.h"
 #import <objc/runtime.h>
 
 @implementation UIViewController (SlidingDownController)

@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SlidingDownControllerExample.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -18,6 +23,16 @@
 			<true/>
 		</dict>
 		<key>B9DD637B1B5BEF94001E3EE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9DD63A01B5D0866001E3EE3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9DD63B81B5D0867001E3EE3</key>
 		<dict>
 			<key>primary</key>
 			<true/>

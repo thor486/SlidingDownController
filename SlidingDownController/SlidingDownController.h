@@ -7,6 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+SlidingDownController.h"
+
+typedef enum : NSUInteger
+{
+    SlidingDownControllerDown     = 1,
+    SlidingDownControllerUp       = 2,
+    SlidingDownControllerDefault  = 3
+} SlidingDownControllerState;
 
 //! Project version number for SlidingDownController.
 FOUNDATION_EXPORT double SlidingDownControllerVersionNumber;
@@ -20,7 +28,22 @@ FOUNDATION_EXPORT const unsigned char SlidingDownControllerVersionString[];
 
 typedef void(^SlidingDownControllerDefaultHandler)(BOOL finished);
 
-@property (nonatomic, readwrite) IBOutlet UIViewController *frontViewController;
-@property (nonatomic, readwrite) IBOutlet UIViewController *backViewController;
+@property (nonatomic, readwrite) UIViewController *frontViewController;
+@property (nonatomic, readwrite) UIViewController *backViewController;
+@property (nonatomic, assign) SlidingDownControllerState slidingControllerState;
+@property (nonatomic, assign) CGFloat bottomOffset;
+@property (nonatomic, assign) CGFloat animationDuration;
+@property (nonatomic, assign) BOOL recognizesPanningOnFrontView;
+@property (nonatomic, readonly) UIPanGestureRecognizer *slidingPanGestureRecognizer;
+
++ (instancetype) slidingDownControllerWithFrontController:(UIViewController *) frontController
+                                           backController:(UIViewController *) backController;
+
+- (IBAction) slideButtonTapped:(id)sender;
+
+- (void) slideDown;
+- (void) slideUp;
+- (void) slideDownWithCompletion:(SlidingDownControllerDefaultHandler) completion;
+- (void) slideUpWithCompletion:(SlidingDownControllerDefaultHandler) completion;
 
 @end
