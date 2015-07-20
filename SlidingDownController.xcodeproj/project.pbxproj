@@ -10,6 +10,9 @@
 		B9DD63771B5BEF94001E3EE3 /* SlidingDownController.h in Headers */ = {isa = PBXBuildFile; fileRef = B9DD63761B5BEF94001E3EE3 /* SlidingDownController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B9DD637D1B5BEF94001E3EE3 /* SlidingDownController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DD63711B5BEF94001E3EE3 /* SlidingDownController.framework */; };
 		B9DD63841B5BEF94001E3EE3 /* SlidingDownControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD63831B5BEF94001E3EE3 /* SlidingDownControllerTests.m */; };
+		B9DD639A1B5D050C001E3EE3 /* SlidingDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD63971B5D050C001E3EE3 /* SlidingDownController.m */; };
+		B9DD639B1B5D050C001E3EE3 /* UIViewController+SlidingDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9DD63981B5D050C001E3EE3 /* UIViewController+SlidingDownController.m */; };
+		B9DD639C1B5D050C001E3EE3 /* UIViewController+SlidingDownController.h in Headers */ = {isa = PBXBuildFile; fileRef = B9DD63991B5D050C001E3EE3 /* UIViewController+SlidingDownController.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		B9DD637C1B5BEF94001E3EE3 /* SlidingDownControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SlidingDownControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DD63821B5BEF94001E3EE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9DD63831B5BEF94001E3EE3 /* SlidingDownControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SlidingDownControllerTests.m; sourceTree = "<group>"; };
+		B9DD63971B5D050C001E3EE3 /* SlidingDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidingDownController.m; sourceTree = "<group>"; };
+		B9DD63981B5D050C001E3EE3 /* UIViewController+SlidingDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SlidingDownController.m"; sourceTree = "<group>"; };
+		B9DD63991B5D050C001E3EE3 /* UIViewController+SlidingDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SlidingDownController.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,9 @@
 		B9DD63731B5BEF94001E3EE3 /* SlidingDownController */ = {
 			isa = PBXGroup;
 			children = (
+				B9DD63971B5D050C001E3EE3 /* SlidingDownController.m */,
+				B9DD63981B5D050C001E3EE3 /* UIViewController+SlidingDownController.m */,
+				B9DD63991B5D050C001E3EE3 /* UIViewController+SlidingDownController.h */,
 				B9DD63761B5BEF94001E3EE3 /* SlidingDownController.h */,
 				B9DD63741B5BEF94001E3EE3 /* Supporting Files */,
 			);
@@ -109,6 +118,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9DD639C1B5D050C001E3EE3 /* UIViewController+SlidingDownController.h in Headers */,
 				B9DD63771B5BEF94001E3EE3 /* SlidingDownController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +219,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9DD639A1B5D050C001E3EE3 /* SlidingDownController.m in Sources */,
+				B9DD639B1B5D050C001E3EE3 /* UIViewController+SlidingDownController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +410,7 @@
 				B9DD63891B5BEF94001E3EE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9DD638A1B5BEF94001E3EE3 /* Build configuration list for PBXNativeTarget "SlidingDownControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +419,7 @@
 				B9DD638C1B5BEF94001E3EE3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

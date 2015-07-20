@@ -16,4 +16,11 @@ FOUNDATION_EXPORT const unsigned char SlidingDownControllerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SlidingDownController/PublicHeader.h>
 
+@interface SlidingDownController : UIViewController
 
+typedef void(^SlidingDownControllerDefaultHandler)(BOOL finished);
+
+@property (nonatomic, readwrite) IBOutlet UIViewController *frontViewController;
+@property (nonatomic, readwrite) IBOutlet UIViewController *backViewController;
+
+@end
