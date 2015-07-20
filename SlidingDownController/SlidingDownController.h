@@ -35,6 +35,7 @@ typedef void(^SlidingDownControllerDefaultHandler)(BOOL finished);
 @property (nonatomic, assign) CGFloat animationDuration;
 @property (nonatomic, assign) BOOL recognizesPanningOnFrontView;
 @property (nonatomic, readonly) UIPanGestureRecognizer *slidingPanGestureRecognizer;
+@property (nonatomic, readonly) UITapGestureRecognizer *slidingTapGestureRecognizer;
 
 + (instancetype) slidingDownControllerWithFrontController:(UIViewController *) frontController
                                            backController:(UIViewController *) backController;

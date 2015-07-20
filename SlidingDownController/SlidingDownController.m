@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIView *frontView;
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong, readwrite) UIPanGestureRecognizer *slidingPanGestureRecognizer;
+@property (nonatomic, strong, readwrite) UITapGestureRecognizer *slidingTapGestureRecognizer;
 
 @end
 
@@ -74,10 +75,19 @@
     return self;
 }
 
+#pragma mark - GestureRecognizer Methods
 
-- (void) slideDown {
-    
-    [self slideDownWithCompletion:nil];
+- (void)updateTapGestureRecognizerPresence
+{
+    if (self.slidingControllerState == SlidingDownControllerUp || self.slidingControllerState == SlidingDownControllerDefault) {
+        
+        [self.frontView removeGestureRecognizer:self.slidingTapGestureRecognizer];
+        self.frontViewController.view.userInteractionEnabled = true;
+    } else {
+        
+        [self.frontView addGestureRecognizer:self.slidingTapGestureRecognizer];
+        self.frontViewController.view.userInteractionEnabled = false;
+    }
 }
 
 
@@ -106,7 +116,17 @@
     
     self.slidingPanGestureRecognizer.maximumNumberOfTouches = 1;
     
+    self.slidingTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didRecognizeTapGesture:)];
+    
+    self.slidingTapGestureRecognizer.numberOfTapsRequired = 1;
+    
     [self updatePanGestureRecognizerPresence];
+    [self updateTapGestureRecognizerPresence];
+}
+
+- (void) didRecognizeTapGesture:(UITapGestureRecognizer *) recognizer {
+    
+    [self slideUp];
 }
 
 - (void) didRecognizePanGesture:(UIPanGestureRecognizer *) recognizer {
@@ -135,6 +155,12 @@
     }
 }
 
+#pragma mark - Sliding methods
+
+- (void) slideDown {
+    
+    [self slideDownWithCompletion:nil];
+}
 
 - (void) slideDownWithCompletion:(SlidingDownControllerDefaultHandler) completion {
     
@@ -157,6 +183,7 @@
             } completion:^(BOOL finished) {
                 
                 _slidingControllerState = SlidingDownControllerDown;
+                [self updateTapGestureRecognizerPresence];
                 if (completion != nil)
                     completion(true);
             }];
@@ -187,6 +214,7 @@
             } completion:^(BOOL finished) {
                 
                 _slidingControllerState = SlidingDownControllerUp;
+                [self updateTapGestureRecognizerPresence];
                 self.backView.hidden = true;
                 if (completion != nil)
                     completion(true);
@@ -194,6 +222,8 @@
         }];
     }];
 }
+
+#pragma mark - Rotation methods
 
 - (BOOL)shouldAutorotate
 {
@@ -211,6 +241,8 @@
 {
 
 }
+
+#pragma mark - Private Methods
 
 - (void) loadDefaultValues {
     
