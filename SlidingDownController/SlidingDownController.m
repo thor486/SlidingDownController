@@ -8,6 +8,8 @@
 
 #import "SlidingDownController.h"
 
+#define BOUNCE_OFFSET  30.0
+
 @interface SlidingDownController ()
 
 @property (nonatomic, strong) UIView *frontView;
@@ -16,7 +18,9 @@
 
 @end
 
-@implementation SlidingDownController
+@implementation SlidingDownController {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -136,16 +140,27 @@
     
     [self addViewController:self.backViewController container:self.backView];
     self.backView.hidden = false;
-    [UIView animateWithDuration:1.0 animations:^{
+    
+    [UIView animateWithDuration:_animationDuration animations:^{
         
-        _frontViewController.view.frame = CGRectOffset(_frontViewController.view.frame, 0, [UIScreen mainScreen].bounds.size.height - _bottomOffset);
-        
+        self.frontView.frame = CGRectOffset(self.frontView.frame, 0, ([UIScreen mainScreen].bounds.size.height - _bottomOffset)+BOUNCE_OFFSET);
     } completion:^(BOOL finished) {
         
-        _slidingControllerState = SlidingDownControllerDown;
-        
-        if (completion != nil)
-            completion(true);
+        [UIView animateWithDuration:_animationDuration/4 animations:^{
+            
+            self.frontView.frame = CGRectOffset(self.frontView.frame, 0, -BOUNCE_OFFSET*2);
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:_animationDuration/4 animations:^{
+                
+                self.frontView.frame = CGRectOffset(self.frontView.frame, 0, BOUNCE_OFFSET);
+            } completion:^(BOOL finished) {
+                
+                _slidingControllerState = SlidingDownControllerDown;
+                if (completion != nil)
+                    completion(true);
+            }];
+        }];
     }];
 }
 
@@ -156,16 +171,27 @@
 
 - (void) slideUpWithCompletion:(SlidingDownControllerDefaultHandler) completion {
     
-    [UIView animateWithDuration:1.0 animations:^{
+    [UIView animateWithDuration:_animationDuration animations:^{
         
-        _frontViewController.view.frame = CGRectOffset(_frontViewController.view.frame, 0, -([UIScreen mainScreen].bounds.size.height - _bottomOffset));
-        
+        self.frontView.frame = CGRectOffset(self.frontView.frame, 0, -([UIScreen mainScreen].bounds.size.height - _bottomOffset)-BOUNCE_OFFSET);
     } completion:^(BOOL finished) {
         
-        self.backView.hidden = true;
-        _slidingControllerState = SlidingDownControllerUp;
-        if (completion != nil)
-            completion(true);
+        [UIView animateWithDuration:_animationDuration/4 animations:^{
+            
+            self.frontView.frame = CGRectOffset(self.frontView.frame, 0, BOUNCE_OFFSET*2);
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:_animationDuration/4 animations:^{
+                
+                self.frontView.frame = CGRectOffset(self.frontView.frame, 0, -BOUNCE_OFFSET);
+            } completion:^(BOOL finished) {
+                
+                _slidingControllerState = SlidingDownControllerUp;
+                self.backView.hidden = true;
+                if (completion != nil)
+                    completion(true);
+            }];
+        }];
     }];
 }
 
@@ -188,7 +214,7 @@
 
 - (void) loadDefaultValues {
     
-    _animationDuration = 1.0;
+    _animationDuration = 0.8;
     _bottomOffset = 100.0;
     _slidingControllerState = SlidingDownControllerDefault;
     _recognizesPanningOnFrontView = false;
